@@ -21,7 +21,8 @@ var slideshow =
 
 	/*1* here is our array called photoList and it contains the names of photos as strings*/
 	photoList: ['RR1.jpg', 'RR2.jpg', 'aahana and salina.jpg', 'my family.jpg'],
-
+	//JS functions 3 Lab 1 - create an empty property named playInterval. 
+	playInterval : null,
 
 	/*2 here is our currentPhotoIndex which is represented as an integer (0 = RR1.jpg referenced in photoList) */
 	 currentPhotoIndex: 0,
@@ -39,13 +40,15 @@ var slideshow =
 		nextPhoto : function() 
 		{
 				//says if this currentPhotoIndex is < this photoList length -1(because of 0) cont.
-		 	if (this.currentPhotoIndex < this.photoList.length-1)
-		 	{	//then take this currentPhotoIndex and add 1
-		 		this.currentPhotoIndex ++;
+		 	if (this.currentPhotoIndex < this.photoList.length)
+		 	{	
 		 		//log this photolist[in this curentPhotoIndex]
 		 		console.log(this.photoList[this.currentPhotoIndex]);
-		 	} else { //otherwise if this currentPhotIndex is > or = then return this message
-		 		return console.log('End of slideshow')
+		 		//then take this currentPhotoIndex and add 1
+		 		this.currentPhotoIndex ++;
+		 	} else { /*otherwise if this currentPhotIndex is > or = then return this message
+		 		return console.log('End of slideshow')*/
+		 		this.pause();
 		 	}		
 		},
 
@@ -58,13 +61,25 @@ var slideshow =
 				//log this photolist[in this curentPhotoIndex]
 				console.log(this.photoList[this.currentPhotoIndex]);
 			} else {  //otherwise if this currentPhotIndex is < or = then return this message
-				console.log ('Start of slideshow')
+				console.log ('Start of slideshow');
 			}
-		}
+		},
 
+	/*JS functions 3 Lab 2- A play() function that moves to the next photo ever 2000ms until the end.  */
+		play: function()
+		{this.playInterval = setInterval(function() {slideshow.nextPhoto()}, 2000)
+		
+
+		},
+
+		pause: function()
+		{ clearInterval(this.playInterval);
+			console.log("Paused");
+
+		},
 }
 // used to text out our solutions, this calls the object.function
-slideshow.nextPhoto();
+/*slideshow.nextPhoto();
 slideshow.getCurrentPhoto();
 slideshow.prevPhoto();
 slideshow.nextPhoto();
@@ -74,8 +89,9 @@ slideshow.nextPhoto();
 slideshow.nextPhoto();
 slideshow.prevPhoto();
 slideshow.prevPhoto();
-slideshow.prevPhoto();
-slideshow.prevPhoto();
-slideshow.prevPhoto();
+slideshow.prevPhoto();*/
+
+
+slideshow.play();
 
 
